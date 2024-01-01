@@ -24,6 +24,7 @@ app.use('/api/v1/stores', require('./src/moduels/store/store.api'))
 app.use('/api/v1/shipmentOrders', require('./src/moduels/shipmentOrder/shipmentOrder.api'))
 app.use('/api/v1/Payments', require('./src/moduels/payment/payment.api'))
 app.use('/api/v1/bills', require('./src/moduels/bill/bill.api'))
+app.use('/api/v1/bankAccounts', require('./src/moduels/Bank Account/bankAccount.api'))
 
 
 

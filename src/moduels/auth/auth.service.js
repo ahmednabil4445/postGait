@@ -76,6 +76,10 @@ module.exports.signin = async (req, res, next) => {
 }
 
 
+exports.logout = catchAsyncError(async (req, res, next) => {
+    res.clearCookie('token');
+    res.json({ message: 'Logged out successfully' });
+});
 module.exports.protectedRoutes = async (req, res, next) => {
     let { token } = req.headers;
 

@@ -10,14 +10,8 @@ const shopSchema = mongoose.Schema({
         required: [true, 'phone required'],
     },
     customerAddressDetails: {
-        city: {
-            name_en: { type: String},
-            name_ar: { type: String },
-        },
-        country: {
-            name_en: { type: String },
-            name_ar: { type: String}
-        },
+        city: String,
+        country:String,
         postalCode: Number,
         customerAddress: String,
         customerAddress_Elective: String

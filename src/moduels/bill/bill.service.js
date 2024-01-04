@@ -1,6 +1,7 @@
 const billModel = require('../../../databases/models/bill.model')
 const AppError = require('../../utils/AppError')
 const { catchAsyncError } = require('../../middleware/catchAsyncError')
+const ApiFeatuers = require('../../utils/ApiFeatuers')
 
 
 module.exports.createBills= catchAsyncError(async (req, res , next) => {
@@ -13,6 +14,11 @@ module.exports.createBills= catchAsyncError(async (req, res , next) => {
 module.exports.getAllbills = catchAsyncError(async (req, res) => {
     let bills = await billModel.find({})
     res.json({ message: 'Fetehed bills Succefully', bills })
+})
+module.exports.searchBills = catchAsyncError(async (req, res) => {
+    let apiFeatuers = new ApiFeatuers(billModel.find(), req.query).search()
+    let Bills = await apiFeatuers.mongooseQuery
+    res.json({ message: 'this is All Bills', Bills })
 })
 module.exports.getSpecificBill = catchAsyncError(async (req, res) => {
     const { id } = req.params

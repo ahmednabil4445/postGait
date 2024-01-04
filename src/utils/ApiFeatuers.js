@@ -38,11 +38,22 @@ class ApiFeatuers {
     }
 
     // ********************* Search *************************
+
+    
     search() {
         if (this.queryString.keyword) {
             this.mongooseQuery.find({
                 $or: [
                     { name: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { email: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { phone: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { customerAddress: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { customerAddress_Elective: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { nameCustomer: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { storeName: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { shippingCompany: { $regex: this.queryString.keyword, $options: 'i' } },
+                    
+                    
                 ]
             })
         }

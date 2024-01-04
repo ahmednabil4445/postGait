@@ -11,14 +11,6 @@ module.exports.createClient = catchAsyncError(async (req, res, next) => {
     await Client.save();
     res.status(200).json({ message: 'Create Client Success', Client })
 })
-module.exports.createClient = catchAsyncError(async (req, res, next) => {
-    const ClientExist = await clientModel.findOne({ email: req.body.email });
-    if (ClientExist) next(new AppError('E-mail Aleardy Exist', 409))
-    let newClient = new clientModel(req.body)
-    await newClient.save();
-    res.status(200).json({ message: 'Create Client Success', client: newClient });
-})
-
 module.exports.cities = catchAsyncError(async (req, res, next) => {
     const searchTerm = req.query.search || '';
     const citiesResponse = await axios.get('https://raw.githubusercontent.com/homaily/Saudi-Arabia-Regions-Cities-and-Districts/master/json/cities.json');
@@ -53,6 +45,7 @@ module.exports.getAllClients = catchAsyncError(async (req, res) => {
     let Clients = await clientModel.find({})
     res.json({ message: 'this is All Clients', Clients })
 })
+
 module.exports.searchClient = catchAsyncError(async (req, res) => {
     let apiFeatuers = new ApiFeatuers(clientModel.find(), req.query).search()
     let Clients = await apiFeatuers.mongooseQuery

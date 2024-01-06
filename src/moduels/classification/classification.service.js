@@ -1,6 +1,7 @@
 const classificationModel = require('../../../databases/models/classification.model')
 const AppError = require('../../utils/AppError')
 const { catchAsyncError } = require('../../middleware/catchAsyncError')
+const ApiFeatuers = require('../../utils/ApiFeatuers')
 
 
 module.exports.createClassification = catchAsyncError(async (req, res) => {
@@ -19,7 +20,11 @@ module.exports.getSpecificClassification = catchAsyncError(async (req, res) => {
     let Classification = await classificationModel.findById(id)
     res.json({ message: 'Success',Classification })
 })
-
+module.exports.searchClassifications = catchAsyncError(async (req, res) => {
+    let apiFeatuers = new ApiFeatuers(classificationModel.find(), req.query).search()
+    let Classifications = await apiFeatuers.mongooseQuery
+    res.json({ message: 'this is All Classifications', Classifications })
+})
 module.exports.updateClassification = catchAsyncError(async (req, res, next) => {
     const { id } = req.params
     let Classification = await classificationModel.findByIdAndUpdate(id, req.body, { new: true });

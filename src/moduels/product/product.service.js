@@ -1,7 +1,8 @@
 const productModel = require('../../../databases/models/product.model')
 const AppError = require('../../utils/AppError')
 const { catchAsyncError } = require('../../middleware/catchAsyncError')
-const cloudinary = require('cloudinary')
+const cloudinary = require('cloudinary');
+const ApiFeatuers = require('../../utils/ApiFeatuers');
 
 // **********************************************
 cloudinary.v2.config({
@@ -42,7 +43,11 @@ module.exports.getSpecificProduct = catchAsyncError(async (req, res) => {
     let Product = await productModel.findById(id)
     res.json({ message: 'Success', Product })
 })
-
+module.exports.searchProducts = catchAsyncError(async (req, res) => {
+    let apiFeatuers = new ApiFeatuers(productModel.find(), req.query).search()
+    let Products = await apiFeatuers.mongooseQuery
+    res.json({ message: 'this is All Products', Products })
+})
 module.exports.updateProduct = catchAsyncError(async (req, res, next) => {
     const { id } = req.params
     let Product = await productModel.findByIdAndUpdate(id, req.body, { new: true });

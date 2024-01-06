@@ -27,7 +27,7 @@ module.exports.signup = async (req, res, next) => {
         verificationCode, 
       });
       await newUser.save();
-      const taqnyatClient = new Taqnyat.Taqnyat('107a4320b038638375f83ea7deb99b3d', 'Taqnyat-AD');
+      const taqnyatClient = new Taqnyat.Taqnyat('107a4320b038638375f83ea7deb99b3d', 'Postgait-AD');
       const message = `Your verification code is: ${verificationCode}`;
       const recipients = [phone];
       try {

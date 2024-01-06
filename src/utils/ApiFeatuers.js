@@ -54,6 +54,12 @@ class ApiFeatuers {
                     { shippingCompany: { $regex: this.queryString.keyword, $options: 'i' } },
                     { Main: { $regex: this.queryString.keyword, $options: 'i' } },
                     { Name: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { productName: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { length: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { weight: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { height: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { width: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { Classification: { $regex: this.queryString.keyword, $options: 'i' } },
                     
                     
                 ]

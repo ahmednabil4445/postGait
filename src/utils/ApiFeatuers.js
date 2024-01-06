@@ -52,6 +52,8 @@ class ApiFeatuers {
                     { nameCustomer: { $regex: this.queryString.keyword, $options: 'i' } },
                     { storeName: { $regex: this.queryString.keyword, $options: 'i' } },
                     { shippingCompany: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { Main: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { Name: { $regex: this.queryString.keyword, $options: 'i' } },
                     
                     
                 ]

@@ -8,14 +8,6 @@ const ApiFeatuers = require('../../utils/ApiFeatuers')
 
 module.exports.createShipment = catchAsyncError(async (req, res , next) => {
     let Shipment = new shipmentModel(req.body)
-    let clientFound = await clientModel.findById(req.body.clientName)
-    let productFound = await productModel.findById(req.body.product)
-    if (!clientFound) {
-        return next(new AppError('Client Not Found', 409));
-    }
-    if (!productFound) {
-        return next(new AppError('Product Not Found', 409));
-    }
     await Shipment.save();
     res.status(200).json({ message: 'Success', Shipment })
 })

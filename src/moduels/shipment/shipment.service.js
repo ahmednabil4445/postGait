@@ -3,6 +3,7 @@ const AppError = require('../../utils/AppError')
 const { catchAsyncError } = require('../../middleware/catchAsyncError')
 const clientModel = require('../../../databases/models/client.model')
 const productModel = require('../../../databases/models/product.model')
+const ApiFeatuers = require('../../utils/ApiFeatuers')
 
 
 module.exports.createShipment = catchAsyncError(async (req, res , next) => {
@@ -29,7 +30,11 @@ module.exports.getSpecificShipment = catchAsyncError(async (req, res) => {
     let Shipment = await shipmentModel.findById(id)
     res.json({ message: 'Success', Shipment })
 })
-
+module.exports.searchShipment = catchAsyncError(async (req, res) => {
+    let apiFeatuers = new ApiFeatuers(shipmentModel.find(), req.query).search()
+    let Shipment = await apiFeatuers.mongooseQuery
+    res.json({ message: 'this is All Shipments', Shipment })
+})
 module.exports.updateShipment = catchAsyncError(async (req, res, next) => {
     const { id } = req.params
     let Shipment = await shipmentModel.findByIdAndUpdate(id, req.body, { new: true });

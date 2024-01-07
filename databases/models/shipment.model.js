@@ -4,14 +4,14 @@ const shipmentSchema = mongoose.Schema({
     clientName: {
         type: String
     },
-    product: {
+    productName: {
         type: String
     },
     storeName: {
         type: String,
         required: true
     },
-    shipingCompany: {
+    shippingCompany: {
         type: String,
         required: true
     },

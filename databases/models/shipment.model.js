@@ -2,14 +2,10 @@ const mongoose = require('mongoose')
 
 const shipmentSchema = mongoose.Schema({
     clientName: {
-        type: mongoose.Types.ObjectId,
-        ref: 'user',
-        required: true
+        type: String
     },
     product: {
-        type: mongoose.Types.ObjectId,
-        ref: 'product',
-        required: true
+        type: String
     },
     storeName: {
         type: String,

@@ -1,13 +1,20 @@
 const shipmentModel = require('../../../databases/models/shipment.model')
+const productModel = require('../../../databases/models/product.model')
+
 const AppError = require('../../utils/AppError')
 const { catchAsyncError } = require('../../middleware/catchAsyncError')
-const clientModel = require('../../../databases/models/client.model')
-const productModel = require('../../../databases/models/product.model')
+
 const ApiFeatuers = require('../../utils/ApiFeatuers')
 
 
 module.exports.createShipment = catchAsyncError(async (req, res , next) => {
     let Shipment = new shipmentModel(req.body)
+    
+    const product = await productModel.findById(req.body.productName);
+    if (!product) {
+        return next(new AppError('Product Not Exists', 409));
+    }
+    Shipment.price =( product.price * Shipment.quantity)
     await Shipment.save();
     res.status(200).json({ message: 'Success', Shipment })
 })

@@ -5,7 +5,8 @@ const shipmentSchema = mongoose.Schema({
         type: String
     },
     productName: {
-        type: String
+        type: mongoose.Types.ObjectId,
+        ref: 'product'
     },
     storeName: {
         type: String,
@@ -21,6 +22,10 @@ const shipmentSchema = mongoose.Schema({
     },
     quantity: {
         type: Number
+    },
+    price: {
+        type: Number,
+        default:0
     },
 }, { timestamps: true })
 

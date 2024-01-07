@@ -59,6 +59,7 @@ class ApiFeatuers {
                     { weight: { $regex: this.queryString.keyword, $options: 'i' } },
                     { height: { $regex: this.queryString.keyword, $options: 'i' } },
                     { width: { $regex: this.queryString.keyword, $options: 'i' } },
+                    { clientName: { $regex: this.queryString.keyword, $options: 'i' } },
                     { Classification: { $regex: this.queryString.keyword, $options: 'i' } },
                     
                     

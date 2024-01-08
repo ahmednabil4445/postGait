@@ -68,7 +68,7 @@ module.exports.signin = async (req, res, next) => {
                 let token = jwt.sign({ name: user.name, role: user.role, email: user.email, userId: user._id }, 'SKEY')
                 res.json({ message: "Success Signin", token })
         } else {
-            res.json({ message: 'password in-correct' })
+            res.status(409).json({ message: 'password in-correct' })
         }
     } else {
         res.status(409).json({ message: 'E-mail Not Registered' })
